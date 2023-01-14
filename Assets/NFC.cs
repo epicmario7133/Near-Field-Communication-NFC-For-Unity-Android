@@ -35,7 +35,7 @@ public class NFC : MonoBehaviour {
 						AndroidJavaObject[] records = rawMsg[0].Call<AndroidJavaObject[]>("getRecords");
 						byte[] payLoad = records[0].Call<byte[]>("getPayload");
 						string result = System.Text.Encoding.Default.GetString(payLoad); // not sure if it works for all encodings, but it works for me
-						result = result.Replace("en", ""); //rimuovi EN
+						result = result.Substring(3); //remove EN
 						tag_output_text.text = result; // first few letters are about used language (for english "en..")
 					}
 					else if (sAction == "android.nfc.action.TAG_DISCOVERED") {
